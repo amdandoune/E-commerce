@@ -1,0 +1,42 @@
+<div ng-controller="ItemCtrl as ictrl" class="container">
+    <div>
+        <h2>Item Table</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Item Type</th>
+                <th>Item Quantity</th>
+                <th>Item Price</th>
+                <th>Item Seller</th>
+                <!--<th>Inventory ID</th>-->
+                <th>Amount to buy</th>
+                <th>Add To Cart</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in ictrl.shopitems">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.seller}}</td>
+                <!--<td>{{item.inventoryID}}</td>-->
+                <td>
+                    <input type="number" min="0" max="100" />
+                </td>
+                <td>
+                    <button disabled="disabled">Add </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>Total quantity of all items is: ...</p>
+        <p>Total price of all items is: ...</p>
+        <button disabled="disabled">Buy Items</button>
+    </div>
+</div>

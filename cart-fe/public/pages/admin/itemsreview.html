@@ -1,0 +1,87 @@
+
+<div ng-controller="ItemCtrl as ictrl" class="container2">
+    <div>
+        <h2>Item Review Table (admin)</h2>
+        <div class="row">
+            <ul class="list-group">
+                <li ng-repeat="item in ictrl.shopitems" ng-click="ictrl.selectItem($index)" class="list-group-item">
+                    <span>{{ item.id +" - "+ item.name }}</span>
+                    <!--<p><span>{{ item.id +" - "+ item.type }}</span></p>-->
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="media" ng-controller="ReviewCtrl as rctrl">
+                <button ng-hide="rctrl.addModeReview" ng-click="rctrl.addReview()" >Add</button>
+                <button ng-show="rctrl.addModeReview" ng-click="rctrl.saveReview()" >Add To Items</button>
+                <div ng-show="rctrl.addModeReview">
+                    <!--<p><span>ID:</span><span>{{ " "+ reviewSet.id }}</span></p>-->
+                    <p><span>Nick Name:</span>
+                        <!--<span ng-hide="rctrl.editModeReview">{{ " "+ reviewSet.nickName }}</span>-->
+                        <input type="text" ng-model="rctrl.selectedReview.nickName"/>
+                    </p>
+                    <p><span>Review:</span>
+                        <!--<span ng-hide="rctrl.editModeReview">{{ " "+ reviewSet.review }}</span>-->
+                        <input type="text" ng-model="rctrl.selectedReview.review"/>
+                    </p>
+                    <p><span>Rating:</span>
+                        <!--<span ng-hide="rctrl.editModeReview">{{ " "+ reviewSet.rating }}</span>-->
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="rctrl.selectedReview.rating"/>
+                    </p>
+                    <p><span>Item ID:</span>
+                        <!--<span>{{ " "+ ictrl.selectedItem.id }}</span>-->
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="rctrl.selectedReview.item.id"/>
+                    </p>
+
+                </div>
+
+
+                <div class="media-body" ng-hide="rctrl.addModeReview" ng-if="ictrl.selectedItem.id != null" >
+                    <br/>
+                    <div ng-if="rctrl.selectedReview.id != null && ictrl.selectedItem.id == rctrl.selectedReview.item.id" >
+                        <p><span>The selected Review id is: </span><span >{{ " "+ rctrl.selectedReview.id }}</span></p>
+                        <button ng-hide="rctrl.editModeReview" ng-click="rctrl.toggleEditModeReview()" >Edit</button>
+                        <button ng-show="rctrl.editModeReview" ng-click="rctrl.saveReview()" >Save</button>
+                        <button ng-click="rctrl.removeReview()" >Delete</button>
+                        <div ng-show="rctrl.editModeReview">
+
+                            <p><span>ID:</span><span>{{ " "+ rctrl.selectedReview.id }}</span></p>
+                            <p><span>Nick Name:</span>
+                                <!--<span ng-hide="rctrl.editModeReview">{{ " "+ reviewSet.nickName }}</span>-->
+                                <input type="text" ng-model="rctrl.selectedReview.nickName"/>
+                            </p>
+                            <p><span>Review:</span>
+                                <!--<span ng-hide="rctrl.editModeReview">{{ " "+ reviewSet.review }}</span>-->
+                                <input type="text" ng-model="rctrl.selectedReview.review"/>
+                            </p>
+                            <p><span>Rating (0-9):</span>
+                                <!--<span ng-hide="rctrl.editModeReview">{{ " "+ reviewSet.rating }}</span>-->
+                                <input type="text" maxlength="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="rctrl.selectedReview.rating"/>
+                            </p>
+                            <p><span>Item ID:</span>
+                                <span>{{ " "+ rctrl.selectedReview.item.id }}</span>
+                            </p>
+                            <br/>
+                        </div>
+
+                    </div>
+                    <div ng-if="ictrl.selectedItem.id == reviewSet.item.id" ng-repeat="reviewSet in rctrl.itemsreviews" ng-click="rctrl.selectReview($index)">
+
+                        <p><span>ID:</span><span>{{ " "+ reviewSet.id }}</span></p>
+                        <p><span>Nick Name:</span><span >{{ " "+ reviewSet.nickName }}</span>
+                            <!--<input type="text" ng-show="rctrl.editModeReview" ng-model="reviewSet.nickName"/>-->
+                        </p>
+                        <p><span>Review:</span><span >{{ " "+ reviewSet.review }}</span>
+                            <!--<input type="text" ng-show="rctrl.editModeReview" ng-model="reviewSet.review"/>-->
+                        </p>
+                        <p><span>Rating:</span><span >{{ " "+ reviewSet.rating }}</span>
+                            <!--<input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-show="rctrl.editModeReview" ng-model="reviewSet.rating"/>-->
+                        </p>
+                        <p><span>Item ID:</span><span>{{ " "+ reviewSet.item.id }}</span></p>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

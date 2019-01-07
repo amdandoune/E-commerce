@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
+
+    div
+        a(ui-sref="home", ui-sref-active="active") Hello
+        | &nbsp;
+        a(ui-sref="about", ui-sref-active="active") About
+        | &nbsp;
+        a(ui-sref="items", ui-sref-active="active") Items
+        | &nbsp;
+        a(ui-sref="itemsAdmin", ui-sref-active="active") Admin Item control
+        | &nbsp;
+        a(ui-sref="itemsReview", ui-sref-active="active") Items Review
+        ui-view
+

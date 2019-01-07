@@ -1,0 +1,67 @@
+<div ng-controller="ItemCtrl as ictrl" class="container2">
+    <div>
+        <h2>Item Table (admin)</h2>
+        <div class="row">
+            <ul class="list-group">
+                <li ng-repeat="item in ictrl.shopitems" ng-click="ictrl.selectItem($index)" class="list-group-item"><span>{{ item.id +" - "+ item.name }}</span></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="media"  >
+                <button ng-hide="ictrl.addMode" ng-click="ictrl.addItem()" >Add</button>
+                <button ng-show="ictrl.addMode" ng-click="ictrl.saveItem()" >Add To Items</button>
+                <div ng-show="ictrl.addMode">
+                    <p><span>Name:</span>
+                        <!--<span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.name }}</span>-->
+                        <input type="text" ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.name"/>
+                    </p>
+                    <p><span>Type:</span>
+                        <!--<span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.type }}</span>-->
+                        <input type="text" ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.type"/>
+                    </p>
+                    <p><span>Quantity:</span>
+                        <!--<span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.quantity }}</span>-->
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.quantity"/>
+                    </p>
+                    <p><span>Price:</span>
+                        <!--<span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.price }}</span>-->
+                        <input type="text" onkeypress='return (event.charCode >= 48 && event.charCode <= 57)||event.charCode == 46  ' ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.price"/>
+                    </p>
+                    <p><span>Seller:</span>
+                        <!--<span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.seller }}</span>-->
+                        <input type="text" ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.seller"/>
+                    </p>
+                    <p><span>Inventory ID:</span><span>{{ " "+ ictrl.selectedItem.inventoryID }}</span></p>
+                </div>
+
+                <div class="media-body" ng-hide="ictrl.addMode" ng-if="ictrl.selectedItem.id != null">
+                    <br/>
+                    <button ng-hide="ictrl.editMode" ng-click="ictrl.toggleEditMode()">Edit</button>
+                    <button ng-show="ictrl.editMode" ng-click="ictrl.saveItem()" >Save</button>
+                    <button ng-hide="ictrl.addMode" ng-click="ictrl.removeItem()">Delete</button>
+
+                    <!--<div ng-if="ictrl.successMessage" class="alert alert-success">{{ ictrl.successMessage }}</div>-->
+                    <!--<div ng-if="ictrl.errorMessage" class="alert alert-danger">{{ ictrl.errorMessage }}</div>-->
+
+                    <p><span>ID:</span><span>{{ " "+ ictrl.selectedItem.id }}</span></p>
+                    <p><span>Name:</span><span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.name }}</span>
+                        <input type="text" ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.name"/>
+                    </p>
+                    <p><span>Type:</span><span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.type }}</span>
+                        <input type="text" ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.type"/>
+                    </p>
+                    <p><span>Quantity:</span><span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.quantity }}</span>
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.quantity"/>
+                    </p>
+                    <p><span>Price:</span><span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.price }}</span>
+                        <input type="text" onkeypress='return (event.charCode >= 48 && event.charCode <= 57)||event.charCode == 46  ' ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.price"/>
+                    </p>
+                    <p><span>Seller:</span><span ng-hide="ictrl.editMode">{{ " "+ ictrl.selectedItem.seller }}</span>
+                        <input type="text" ng-show="ictrl.editMode" ng-model="ictrl.selectedItem.seller"/>
+                    </p>
+                    <p><span>Inventory ID:</span><span>{{ " "+ ictrl.selectedItem.inventoryID }}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
